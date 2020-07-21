@@ -13,5 +13,6 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     dplyr,
-    purrr
+    purrr,
+    rlang
 RoxygenNote: 7.0.2
