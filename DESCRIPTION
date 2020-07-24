@@ -1,18 +1,20 @@
 Package: simplepivot
-Title: What the Package Does (One Line, Title Case)
+Title: Simple Functionality for Pivot-Table Style Transformations of Data
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+Authors@R: person("Laurence", "Droy", email = "laurence.t.droy@gmail.com",
+                  role = c("aut", "cre"))
+Description: The main component of this package is the 'simple_pivot' function.
+             This function can be used in conjunction with other piped data manipulation functions
+             (typically at the end). The user selects rows and columns, and supplies a summary function 
+             (with some useful functions provided by the package). Then the function returns a pivot-table
+             style data frame, with the selected rows, columns, and summary values. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
     dplyr,
     purrr,
-    rlang
+    rlang,
+    stats,
+    tidyr
 RoxygenNote: 7.0.2

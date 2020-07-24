@@ -1,65 +1,45 @@
 #' Simple Pivot Data Transformation
 #'
-#' @param df # Data frame object to transform
-#' @param row_var # String indicating the row variable
-#' @param col_var
-#' @param value_variable
-#' @param value_function
+#' @param df Data frame object to transform
+#' @param row_vars Character vector naming the row variable(s)
+#' @param col_vars Character vector naming the column variable(s)
+#' @param value_variable String variable indicating the column with values of analyse
+#' @param value_function Function that takes a vector of values for a group (defined
+#' by a unique combination of row and column values) and returns a single summary
+#' value (the built in 'mean' function, for example).
 #'
 #' @importFrom dplyr "%>%"
 #'
-#' @return
+#' @return a dataframe with the pivot operation applied to it
 #' @export
 #'
 #' @examples
+#' simple_pivot(df = mtcars,
+#'  row_vars = c("gear"),
+#'  col_vars = c("carb"),
+#'  value_variable = "mpg",
+#'  value_function = sum)
 simple_pivot <- function(df,
                          row_vars,
-                         col_var,
+                         col_vars,
                          value_variable,
-                         value_function,
-                         col_desc = FALSE,
-                         row_desc = FALSE
-                         ){
+                         value_function){
 
-
-  col_vals <- df[[col_var]] %>% unique() %>% sort(., decreasing = col_desc)
-
- # row_vals <- df[[row_var]] %>% unique() %>% sort(., decreasing = row_desc)
-
-  summary_table <- purrr::map(
-    col_vals,
-    get_simplepivot_column,
-    df,
-    row_vars,
-    col_var,
-    value_variable,
-    value_function) %>%
-    purrr::reduce(., dplyr::full_join, by=row_vars)
-
-    names(summary_table) <- c(row_vars, paste0(col_var,": ", col_vals))
-
-
-  return(summary_table)
-
-
-}
-
-get_simplepivot_column <- function(col_val,
-                                   df,
-                                   row_var,
-                                   col_var,
-                                   value_var,
-                                   value_func){
-
-  summary_col <- df %>%
-    dplyr::filter(get(col_var) == col_val) %>%
-    dplyr::group_by_at( row_var ) %>%
+  df %>%
+    dplyr::group_by_at(c(row_vars, col_vars)) %>%
     dplyr::summarise(
-        val = value_func(!!as.symbol(value_var))
-  )
-
-  return(summary_col)
+      val = value_function(!!as.symbol( value_variable ))
+      ) %>%
+     tidyr::pivot_wider(
+       names_from=col_vars,
+      names_prefix=paste0("(", paste0(col_vars, collapse=", "), ") "),
+       names_sep = " ",
+       names_sort=TRUE,
+       values_from="val"
+     ) %>%
+    dplyr::arrange_at(row_vars)
 
 }
+
 
 

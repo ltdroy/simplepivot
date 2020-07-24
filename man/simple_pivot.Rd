@@ -2,16 +2,33 @@
 % Please edit documentation in R/simple_pivot.R
 \name{simple_pivot}
 \alias{simple_pivot}
-\title{Title}
+\title{Simple Pivot Data Transformation}
 \usage{
-simple_pivot(df, row_var, col_var, value_variable, value_function)
+simple_pivot(df, row_vars, col_vars, value_variable, value_function)
 }
 \arguments{
-\item{value_function}{}
+\item{df}{Data frame object to transform}
+
+\item{row_vars}{Character vector naming the row variable(s)}
+
+\item{col_vars}{Character vector naming the column variable(s)}
+
+\item{value_variable}{String variable indicating the column with values of analyse}
+
+\item{value_function}{Function that takes a vector of values for a group (defined
+by a unique combination of row and column values) and returns a single summary
+value (the built in 'mean' function, for example).}
 }
 \value{
-
+a dataframe with the pivot operation applied to it
 }
 \description{
-Title
+Simple Pivot Data Transformation
+}
+\examples{
+simple_pivot(df = mtcars,
+ row_vars = c("gear"),
+ col_vars = c("carb"),
+ value_variable = "mpg",
+ value_function = sum)
 }
