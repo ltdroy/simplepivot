@@ -3,11 +3,14 @@ Title: Simple Functionality for Pivot-Table Style Transformations of Data
 Version: 0.0.0.9000
 Authors@R: person("Laurence", "Droy", email = "laurence.t.droy@gmail.com",
                   role = c("aut", "cre"))
-Description: The main component of this package is the 'simple_pivot' function.
-             This function can be used in conjunction with other piped data manipulation functions
-             (typically at the end). The user selects rows and columns, and supplies a summary function 
-             (with some useful functions provided by the package). Then the function returns a pivot-table
-             style data frame, with the selected rows, columns, and summary values. 
+Description: Spreadsheet users enjoy the simplicity and intuitiveness of pivot-tables for data summary and manipulation.
+             R users can achieve similar results using standard data manipulation libraries like dplyr. 
+             However, the process is less intuitive and the barrier to entry is higher for new users. 
+             This package supplies a simple wrapper to dplyr functionality,
+             to allow users to do pivot-table style manipulations, and create summary tables (in data-frame form).
+             The main function 'simple_pivot' fits into a standard data pipeline, and returns a pivoted version of the
+             input data. The package also includes 'helper' functions, which are used to create formatted values for the 
+             pivot table output.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -17,4 +20,6 @@ Imports:
     rlang,
     stats,
     tidyr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
+Suggests: 
+    testthat
