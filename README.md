@@ -8,7 +8,7 @@
 <!-- badges: end -->
 
 The goal of simplepivot is to facilitate simple pivot-table summaries
-and manipulations of dataframes.
+and manipulations of data frames.
 
 Spreadsheet users enjoy the simplicity and intuitiveness of pivot-tables
 for data summary and manipulation. R users can achieve similar results
@@ -66,6 +66,13 @@ pipeline**
 library(dplyr)
 #> 
 #> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:plyr':
+#> 
+#>     arrange, count, desc, failwith, id, mutate, rename, summarise,
+#>     summarize
+#> The following object is masked from 'package:testthat':
+#> 
+#>     matches
 #> The following objects are masked from 'package:stats':
 #> 
 #>     filter, lag
@@ -128,12 +135,12 @@ ChickWeight %>%
   knitr::kable()
 ```
 
-| Diet | (Time) 0     | (Time) 21        |
-| :--- | :----------- | :--------------- |
-| 1    | 41.4 (0.995) | 177.75 (58.702)  |
-| 2    | 40.7 (1.494) | 214.7 (78.138)   |
-| 3    | 40.8 (1.033) | 270.3 (71.623)   |
-| 4    | 41 (1.054)   | 238.556 (43.348) |
+| Diet | (Time) 0         | (Time) 21            |
+| :--- | :--------------- | :------------------- |
+| 1    | 41.4 (SD: 0.995) | 177.75 (SD: 58.702)  |
+| 2    | 40.7 (SD: 1.494) | 214.7 (SD: 78.138)   |
+| 3    | 40.8 (SD: 1.033) | 270.3 (SD: 71.623)   |
+| 4    | 41 (SD: 1.054)   | 238.556 (SD: 43.348) |
 
 Median and inter-quartile range (IQR) can sometimes provide more robust
 summaries, because they are less sensitive to extreme values
@@ -159,12 +166,12 @@ ChickWeight %>%
   knitr::kable()
 ```
 
-| Diet | (Time) 0    | (Time) 21    |
-| :--- | :---------- | :----------- |
-| 1    | 41 (1)      | 166 (70)     |
-| 2    | 40.5 (2.75) | 212.5 (92.5) |
-| 3    | 41 (0)      | 281 (88)     |
-| 4    | 41 (1.75)   | 237 (60)     |
+| Diet | (Time) 0         | (Time) 21         |
+| :--- | :--------------- | :---------------- |
+| 1    | 41 (IQR: 1)      | 166 (IQR: 70)     |
+| 2    | 40.5 (IQR: 2.75) | 212.5 (IQR: 92.5) |
+| 3    | 41 (IQR: 0)      | 281 (IQR: 88)     |
+| 4    | 41 (IQR: 1.75)   | 237 (IQR: 60)     |
 
 Now, we can see that the spread of data within groups (SD, IQR) is quite
 large. This will likely lead us to wonder about the extent to which the
@@ -198,12 +205,12 @@ ChickWeight %>%
   knitr::kable()
 ```
 
-| Diet | (Time) 0     | (Time) 21        |
-| :--- | :----------- | :--------------- |
-| 1    | 41.4 (0.222) | 177.75 (14.676)  |
-| 2    | 40.7 (0.473) | 214.7 (24.709)   |
-| 3    | 40.8 (0.327) | 270.3 (22.649)   |
-| 4    | 41 (0.333)   | 238.556 (14.449) |
+| Diet | (Time) 0         | (Time) 21            |
+| :--- | :--------------- | :------------------- |
+| 1    | 41.4 (SE: 0.222) | 177.75 (SE: 14.676)  |
+| 2    | 40.7 (SE: 0.473) | 214.7 (SE: 24.709)   |
+| 3    | 40.8 (SE: 0.327) | 270.3 (SE: 22.649)   |
+| 4    | 41 (SE: 0.333)   | 238.556 (SE: 14.449) |
 
 Now, we can get even more sophisticated using the
 `simplepivot_mean_95CI` function, which will place the 95% confidence
@@ -228,12 +235,12 @@ ChickWeight %>%
   knitr::kable()
 ```
 
-| Diet | (Time) 0             | (Time) 21                 |
-| :--- | :------------------- | :------------------------ |
-| 1    | 41.4 (40.955-41.845) | 177.75 (148.399-207.101)  |
-| 2    | 40.7 (39.755-41.645) | 214.7 (165.281-264.119)   |
-| 3    | 40.8 (40.147-41.453) | 270.3 (225.002-315.598)   |
-| 4    | 41 (40.333-41.667)   | 238.556 (209.657-267.454) |
+| Diet | (Time) 0                       | (Time) 21                           |
+| :--- | :----------------------------- | :---------------------------------- |
+| 1    | 41.4 (95% CI: 40.934 - 41.866) | 177.75 (95% CI: 146.47 - 209.03)    |
+| 2    | 40.7 (95% CI: 39.631 - 41.769) | 214.7 (95% CI: 158.803 - 270.597)   |
+| 3    | 40.8 (95% CI: 40.061 - 41.539) | 270.3 (95% CI: 219.064 - 321.536)   |
+| 4    | 41 (95% CI: 40.246 - 41.754)   | 238.556 (95% CI: 205.236 - 271.876) |
 
 ## Part of the data pipeline
 

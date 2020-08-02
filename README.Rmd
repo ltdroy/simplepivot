@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of simplepivot is to facilitate simple pivot-table summaries and manipulations of dataframes. 
+The goal of simplepivot is to facilitate simple pivot-table summaries and manipulations of data frames. 
 
 Spreadsheet users enjoy the simplicity and intuitiveness of pivot-tables for data summary and manipulation. R users can achieve similar results using standard data manipulation libraries like dplyr. However, the process is less intuitive and the barrier to entry is higher for new users. This package supplies a simple wrapper to dplyr functionality, to allow users to do pivot-table style manipulations, and create summary tables (in data-frame form). 
 

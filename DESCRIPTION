@@ -11,7 +11,7 @@ Description: Spreadsheet users enjoy the simplicity and intuitiveness of pivot-t
              The main function 'simple_pivot' fits into a standard data pipeline, and returns a pivoted version of the
              input data. The package also includes 'helper' functions, which are used to create formatted values for the 
              pivot table output.
-License: MIT + file LICENSE
+License: MIT
 Encoding: UTF-8
 LazyData: true
 Imports: 
