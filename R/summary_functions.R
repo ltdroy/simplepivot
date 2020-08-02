@@ -37,6 +37,7 @@ simplepivot_mean_SE <- function(num, rounding=3){
 #' @examples
 #' simplepivot_mean_sd(c(1,2,3,4,5))
 simplepivot_mean_95CI <- function(num, rounding=3){
+
   mn <- mean(num)
   s_error_multiplier <- stats::qt(0.975, df=length(num) - 1)
   s_error            <- stats::sd(num)/sqrt(length(num))

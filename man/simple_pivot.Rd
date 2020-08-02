@@ -13,14 +13,13 @@ simple_pivot(df, row_vars, col_vars, value_variable, value_function)
 
 \item{col_vars}{Character vector naming the column variable(s)}
 
-\item{value_variable}{String variable indicating the column with values of analyse}
+\item{value_variable}{Length 1 character vector naming the column with the value to summarise in table cells}
 
-\item{value_function}{Function that takes a vector of values for a group (defined
-by a unique combination of row and column values) and returns a single summary
-value (the built in 'mean' function, for example).}
+\item{value_function}{Function that takes a single vector of values as first (and only required) argument and returns a single summary
+value (the base r 'mean' function, for example). Used to summarise the 'value variable' (by row/column group).}
 }
 \value{
-a dataframe with the pivot operation applied to it
+a tibble/data.frame with the pivot operation applied to it
 }
 \description{
 Simple Pivot Data Transformation
